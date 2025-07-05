@@ -29,19 +29,19 @@ CREATE DATABASE Project1;
 -- Create TABLE
 DROP TABLE IF EXISTS retail_sales;
 CREATE TABLE retail_sales
-            (
-                transaction_id SMALLINT PRIMARY KEY,	
-                sale_date DATE,	 
-                sale_time TIME,	
-                customer_id	TINYINT,
-                gender	VARCHAR(50),
-                age	TINYINT,
-                category VARCHAR(50),	
-                quantity	TINYINT,
-                price_per_unit FLOAT,	
-                cogs	FLOAT,
-                total_sale FLOAT
-            );
+(
+            transaction_id SMALLINT PRIMARY KEY,	
+            sale_date DATE,	 
+            sale_time TIME,	
+            customer_id	TINYINT,
+            gender VARCHAR(50),
+            age TINYINT,
+            category VARCHAR(50),	
+            quantity TINYINT,
+            price_per_unit FLOAT,	
+            cogs FLOAT,
+            total_sale FLOAT
+);
 
 ```
 
