@@ -1,25 +1,25 @@
--- -- SQL Retail Sales Analysis - P1
--- CREATE DATABASE Project1;
+-- SQL Retail Sales Analysis - P1
+CREATE DATABASE Project1;
 
 
--- -- Create TABLE
--- DROP TABLE IF EXISTS retail_sales;
--- CREATE TABLE retail_sales
---             (
---                 transaction_id INT PRIMARY KEY,	
---                 sale_date DATE,	 
---                 sale_time TIME,	
---                 customer_id	INT,
---                 gender	VARCHAR(15),
---                 age	INT,
---                 category VARCHAR(15),	
---                 quantity	INT,
---                 price_per_unit FLOAT,	
---                 cogs	FLOAT,
---                 total_sale FLOAT
---             );
+-- Create TABLE
+DROP TABLE IF EXISTS retail_sales;
+CREATE TABLE retail_sales
+            (
+                transaction_id SMALLINT PRIMARY KEY,	
+                sale_date DATE,	 
+                sale_time TIME,	
+                customer_id	TINYINT,
+                gender	VARCHAR(50),
+                age	TINYINT,
+                category VARCHAR(50),	
+                quantity	TINYINT,
+                price_per_unit FLOAT,	
+                cogs	FLOAT,
+                total_sale FLOAT
+            );
 
--- SELECT * FROM retail_sales
+SELECT * FROM retail_sales
 
 
     
@@ -30,7 +30,7 @@ FROM retail_sales
 
 -- Data Cleaning
 SELECT * FROM retail_sales
-WHERE transactions_id IS NULL
+WHERE transaction_id IS NULL
 
 SELECT * FROM retail_sales
 WHERE sale_date IS NULL
@@ -59,7 +59,7 @@ WHERE
 -- 
 DELETE FROM retail_sales
 WHERE 
-    transactions_id IS NULL
+    transaction_id IS NULL
     OR
     sale_date IS NULL
     OR 
@@ -69,7 +69,7 @@ WHERE
     OR
     category IS NULL
     OR
-    quantiy IS NULL
+    quantity IS NULL
     OR
     cogs IS NULL
     OR
@@ -111,7 +111,7 @@ SELECT DISTINCT category FROM retail_sales
 
 SELECT *
 FROM retail_sales
-WHERE sale_date = '2022-11-05'
+WHERE sale_date = '2022-11-05';
 
 -- Q.2 Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 3 in the month of Nov-2022
 
@@ -123,7 +123,7 @@ WHERE
     AND
     sale_date like '%2022-11%'
     AND
-    quantiy >=3
+    quantity >=3;
 
 -- Q.3 Write a SQL query to calculate the total sales (total_sale) for each category.
 
@@ -132,27 +132,27 @@ SELECT
     SUM(total_sale) AS net_sales,
     COUNT(*) AS total_orders
 FROM retail_sales
-GROUP BY category
+GROUP BY category;
 
 -- Q.4 Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category.
 
 SELECT
     AVG(age) as avg_age
 FROM retail_sales
-WHERE category = 'Beauty'
+WHERE category = 'Beauty';
 
 -- Q.5 Write a SQL query to find all transactions where the total_sale is greater than 1000.
 
 SELECT *
 FROM retail_sales
-WHERE total_sale > 1000
+WHERE total_sale > 1000;
 
 -- Q.6 Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.
 
 SELECT 
     category,
     gender,
-    COUNT(transactions_id) AS total_trans
+    COUNT(transaction_id) AS total_trans
 FROM 
     retail_sales
 GROUP BY 
@@ -173,7 +173,7 @@ SELECT sale_year, sale_month, avg_sale FROM
         YEAR(sale_date),
         MONTH(sale_date)
 ) AS t1
-WHERE monthly_rank = 1
+WHERE monthly_rank = 1;
 
 -- Q.8 Write a SQL query to find the top 5 customers based on the highest total sales 
 
